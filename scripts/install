@@ -16,10 +16,7 @@ source /usr/share/yunohost/helpers
 #=================================================
 ynh_script_progression --message="Setting up source files..." --weight=1
 
-# Download, check integrity, uncompress and patch the source from app.src
-#ynh_setup_source --dest_dir="$install_dir"
-
-chown -R $app: "$install_dir"
+chown -R $app:www-data "$install_dir"
 
 #=================================================
 # SYSTEM CONFIGURATION
@@ -43,10 +40,20 @@ yunohost service add ${app}-web --description="A short description of the app" -
 #=================================================
 ynh_script_progression --message="Adding a configuration file..." --weight=1
 
-#ynh_add_config --template="some_config_file" --destination="$install_dir/some_config_file"
+ynh_add_config --template="../conf/core.conf" --destination="$install_dir/.config/deluge/core.conf"
 
-#chmod 400 "$install_dir/some_config_file"
-#chown $app:$app "$install_dir/some_config_file"
+chmod 400 "$install_dir/.config/deluge/core.conf"
+chown $app:$app "$install_dir/.config/deluge/core.conf"
+
+#=================================================
+# YUNOHOST MULTIMEDIA INTEGRATION
+#=================================================
+#ynh_script_progression --message="Adding multimedia directories..." --weight=6
+
+# Build YunoHost multimedia directories
+#ynh_multimedia_build_main_dir
+
+#ynh_multimedia_addfolder --source_dir="$data_dir" --dest_dir="share/Torrents"
 
 #=================================================
 # GENERIC FINALIZATION
