@@ -1,1 +1,8 @@
-This is a dummy description of this app features
+Deluge is a lightweight, Free Software, cross-platform BitTorrent client.
+
+### Features
+
+- Full Encryption
+- WebUI
+- Plugin System
+
