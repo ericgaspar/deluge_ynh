@@ -31,6 +31,7 @@ ynh_add_nginx_config
 
 # Create a dedicated systemd config
 ynh_add_systemd_config
+ynh_add_systemd_config --template=deluge-web
 
 yunohost service add $app --description="A short description of the app" --log="/var/log/$app/$app.log"
 yunohost service add deluge-web --description="A short description of the app" --log="/var/log/$app/$app.log"
