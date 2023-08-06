@@ -7,7 +7,7 @@ Type=simple
 #User=__APP__
 #Group=__APP__
 UMask=027
-ExecStart=/usr/bin/deluge-web -d
+ExecStart=/usr/bin/deluge-web -d -p __PORT__
 Restart=on-failure
 
 [Install]
