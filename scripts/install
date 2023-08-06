@@ -10,15 +10,6 @@ source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
-# APP "BUILD" (DEPLOYING SOURCES, VENV, COMPILING ETC)
-#=================================================
-# DOWNLOAD, CHECK AND UNPACK SOURCE
-#=================================================
-ynh_script_progression --message="Setting up source files..." --weight=1
-
-chown -R $app:www-data "$install_dir"
-
-#=================================================
 # SYSTEM CONFIGURATION
 #=================================================
 ynh_script_progression --message="Adding system configurations related to $app..." --weight=1
@@ -32,6 +23,8 @@ ynh_add_systemd_config --service="${app}-web" --template="deluge-web.service"
 
 yunohost service add $app --description="Lightweight BitTorrent client" --log="/var/log/$app/$app.log"
 yunohost service add ${app}-web --description="BitTorrent UI" --log="/var/log/$app/$app.log"
+
+chown -R $app:www-data "$install_dir"
 
 #=================================================
 # GENERIC FINALIZATION

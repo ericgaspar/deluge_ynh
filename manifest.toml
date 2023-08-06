@@ -10,7 +10,7 @@ version = "2.0.3~ynh1"
 maintainers = ["eric_G"]
 
 [upstream]
-license = "free"
+license = "GPL-3.0-or-later"
 website = "https://dev.deluge-torrent.org/"
 admindoc = "https://yunohost.org/packaging_apps"
 code = "https://git.deluge-torrent.org/deluge"
