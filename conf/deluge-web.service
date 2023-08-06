@@ -7,7 +7,7 @@ Type=simple
 #User=__APP__
 #Group=__APP__
 UMask=027
-ExecStart=/usr/bin/deluge-web -d -p __PORT__
+ExecStart=/usr/bin/deluge-web -d -p __PORT__ -l /var/log/deluge/web.log -L warning
 Restart=on-failure
 
 [Install]
