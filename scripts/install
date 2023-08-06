@@ -30,30 +30,8 @@ ynh_add_nginx_config
 ynh_add_systemd_config
 ynh_add_systemd_config --service="${app}-web" --template="deluge-web.service"
 
-yunohost service add $app --description="A short description of the app" --log="/var/log/$app/$app.log"
-yunohost service add ${app}-web --description="A short description of the app" --log="/var/log/$app/$app.log"
-
-#=================================================
-# APP INITIAL CONFIGURATION
-#=================================================
-# ADD A CONFIGURATION
-#=================================================
-#ynh_script_progression --message="Adding a configuration file..." --weight=1
-
-#ynh_add_config --template="../conf/core.conf" --destination="$install_dir/.config/deluge/core.conf"
-
-#chmod 400 "$install_dir/.config/deluge/core.conf"
-#chown $app:$app "$install_dir/.config/deluge/core.conf"
-
-#=================================================
-# YUNOHOST MULTIMEDIA INTEGRATION
-#=================================================
-#ynh_script_progression --message="Adding multimedia directories..." --weight=6
-
-# Build YunoHost multimedia directories
-#ynh_multimedia_build_main_dir
-
-#ynh_multimedia_addfolder --source_dir="$data_dir" --dest_dir="share/Torrents"
+yunohost service add $app --description="Lightweight BitTorrent client" --log="/var/log/$app/$app.log"
+yunohost service add ${app}-web --description="BitTorrent UI" --log="/var/log/$app/$app.log"
 
 #=================================================
 # GENERIC FINALIZATION
