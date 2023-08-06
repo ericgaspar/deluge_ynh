@@ -34,7 +34,7 @@ ynh_add_systemd_config
 ynh_add_systemd_config --service="${app}-web" --template="deluge-web.service"
 
 yunohost service add $app --description="A short description of the app" --log="/var/log/$app/$app.log"
-yunohost service add deluge-web --description="A short description of the app" --log="/var/log/$app/$app.log"
+yunohost service add ${app}-web --description="A short description of the app" --log="/var/log/$app/$app.log"
 
 #=================================================
 # APP INITIAL CONFIGURATION
@@ -57,7 +57,7 @@ ynh_script_progression --message="Starting a systemd service..." --weight=1
 
 # Start a systemd service
 ynh_systemd_action --service_name=$app --action="start" --log_path="/var/log/$app/$app.log"
-ynh_systemd_action --service_name=deluge-web --action="start" --log_path="/var/log/$app/$app.log"
+ynh_systemd_action --service_name=${app}-web --action="start" --log_path="/var/log/$app/$app.log"
 
 #=================================================
 # END OF SCRIPT
