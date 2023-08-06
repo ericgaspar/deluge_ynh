@@ -20,14 +20,6 @@ ynh_systemd_action --service_name=$app --action="stop" --log_path="/var/log/$app
 ynh_systemd_action --service_name=${app}-web --action="stop" --log_path="/var/log/$app/$app.log"
 
 #=================================================
-# "REBUILD" THE APP (DEPLOY NEW SOURCES, RERUN NPM BUILD...)
-#=================================================
-# DOWNLOAD, CHECK AND UNPACK SOURCE
-#=================================================
-
-chown -R $app:www-data "$install_dir"
-
-#=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
 #=================================================
 ynh_script_progression --message="Upgrading system configurations related to $app..." --weight=1
@@ -35,9 +27,16 @@ ynh_script_progression --message="Upgrading system configurations related to $ap
 ynh_add_nginx_config
 
 ynh_add_systemd_config
+ynh_add_systemd_config --service="${app}-web" --template="deluge-web.service"
 
 yunohost service add $app --description="Lightweight BitTorrent client" --log="/var/log/$app/$app.log"
 yunohost service add ${app}-web --description="BitTorrent UI" --log="/var/log/$app/$app.log"
+
+mkdir -p /var/log/$app
+chown -R $app:$app /var/log/$app
+chmod -R 750 /var/log/$app
+
+chown -R $app:www-data "$install_dir"
 
 #=================================================
 # START SYSTEMD SERVICE
