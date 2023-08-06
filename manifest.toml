@@ -50,4 +50,4 @@ ram.runtime = "50M"
     main.default = 8112
 
     [resources.apt]
-    packages = "deluged deluge-console deluge-web"
+    packages = "deluge deluged deluge-console deluge-web"
